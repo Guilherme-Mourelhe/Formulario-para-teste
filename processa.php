@@ -2,20 +2,21 @@
 
 include_once 'conecta.php';
 
-
+//VERIFICANDO SE TELEFONE JÁ FOI CADASTRADO NO BANCO
 $novo_telefone = $_POST['telefone'];
 
 $consulta_telefone = "SELECT Telefone FROM form WHERE Telefone = '$novo_telefone'";
 $valida_telefone = mysqli_query($conexao,$consulta_telefone);
 $retorno_telefone = mysqli_num_rows($valida_telefone);
 
+//VERIFICANDO SE EMAIL JÁ FOI CADASTRADO NO BANCO
 $novo_email = $_POST['email'];
 
 $consulta_email = "SELECT Email FROM form WHERE Email = '$novo_email'";
 $valida_email = mysqli_query($conexao,$consulta_email);
 $retorno_email = mysqli_num_rows($valida_email);
 
-
+//VALIDANDO ENVIO, TELEFONE E EMAIL NA MESMA CONDIÇÃO PARA PERMITIR CADASTRO
 if(isset($_POST['enviar']) && $retorno_telefone == 0 && $retorno_email == 0){
 
     $nome = $_POST['nome'];
